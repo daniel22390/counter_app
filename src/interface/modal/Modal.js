@@ -6,7 +6,7 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity
 } from 'react-native'
-import Icon from 'react-native-vector-icons/AntDesign'
+import Icon from '../icon/Icon'
 import { closeModal } from '../../store/actions/modal'
 import { connect } from 'react-redux'
 import styles from './Styles'
@@ -40,7 +40,7 @@ class ModalAlert extends Component {
           </TouchableWithoutFeedback>
           <View style={styles.body}>
 
-            <Icon name={icone} size={50} style={[{ color: cor }, styles.icone]} />
+            <Icon set="AntDesign" icone={icone} size={50} style={[{ color: cor }, styles.icone]} />
             <Text style={styles.message}>{this.props.msg}</Text>
             <View style={{
               flexDirection: 'row',
