@@ -8,45 +8,72 @@ import ButtonActions from '../../interface/button/Button'
 import styles_default from '../Styles'
 import styles from './Styles';
 import { connect } from 'react-redux'
-import { openModal } from '../../store/actions/modal'
-import { 
-  includeCounter
+import {
+  includeCounter,
+  decCounter,
+  incCounter,
+  resetCounter,
+  removeCounter
 } from '../../store/actions/counter'
+import { showMessage } from "react-native-flash-message";
 
 class Config extends Component {
 
   verifyCounters = () => {
-    if(this.props.selected_counter === null)
-      this.props.openModal("Você ainda não inseriu um counter!", 'error')
-    return this.props.selected_counter
+    if (this.props.selected_counter === null)
+      showMessage({
+        message: 'Nenhum counter foi selecionado!',
+        type: "danger",
+      });
+
+    return this.props.selected_counter !== null
   }
 
   addCounter = async () => {
-    await this.props.addCounter()
-    this.props.openModal(`Counter ${this.props.counters.length} adicionado com sucesso!`, 'success')
+    await this.props.includeCounter()
+    showMessage({
+      message: `Counter ${this.props.counters.length} foi adicionado com sucesso!`,
+      type: "success",
+    });
   }
 
-  removeCounter = () => {
-    if(this.verifyCounters()){
-
+  removeCounter = async () => {
+    if (this.verifyCounters()) {
+      await this.props.removeCounter(this.props.selected_counter)
+      showMessage({
+        message: `Counter ${this.props.selected_counter + 1} foi removido com sucesso!`,
+        type: "success",
+      });
     }
   }
 
-  incCounter = () => {
-    if(this.verifyCounters()){
-
+  incCounter = async () => {
+    if (this.verifyCounters()) {
+      await this.props.incCounter(this.props.selected_counter)
+      showMessage({
+        message: `Counter ${this.props.selected_counter + 1} foi incrementado com sucesso!`,
+        type: "success",
+      });
     }
   }
 
-  decCounter = () => {
-    if(this.verifyCounters()){
-
+  decCounter = async () => {
+    if (this.verifyCounters()) {
+      await this.props.decCounter(this.props.selected_counter)
+      showMessage({
+        message: `Counter ${this.props.selected_counter + 1} foi decrementado com sucesso!`,
+        type: "success",
+      });
     }
   }
 
-  resetCounter = () => {
-    if(this.verifyCounters()){
-
+  resetCounter = async () => {
+    if (this.verifyCounters()) {
+      await this.props.resetCounter(this.props.selected_counter)
+      showMessage({
+        message: `Counter ${this.props.selected_counter + 1} foi reiniciado com sucesso!`,
+        type: "success",
+      });
     }
   }
 
@@ -114,15 +141,18 @@ class Config extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    openModal: (msg, type) => dispatch(openModal(msg, type)),
-    addCounter: () => dispatch(includeCounter())
+    includeCounter: () => dispatch(includeCounter()),
+    incCounter: (position) => dispatch(incCounter(position)),
+    decCounter: (position) => dispatch(decCounter(position)),
+    resetCounter: (position) => dispatch(resetCounter(position)),
+    removeCounter: (position) => dispatch(removeCounter(position))
   }
 }
 
 const mapStateToProps = ({ counters }) => {
   return {
-      counters: counters.counters,
-      selected_counter: counters.selected
+    counters: counters.counters,
+    selected_counter: counters.selected
   }
 }
 

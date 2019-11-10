@@ -10,10 +10,10 @@
       "web"
     ],
     "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "orientation": "default",
+    "icon": "./assets/counter.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash_counter.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

@@ -27,6 +27,8 @@ const styles = StyleSheet.create({
   button_reset: {
     flex: 1,
     padding: 10,
+    flexDirection: 'column',
+    alignItems: 'center'
   }
 })
 

@@ -10,18 +10,19 @@ const stackConfig = {
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: '#011C47',
-      height: 130,
+      height: 80,
       
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
       fontWeight: 'bold',
-      marginTop: 80,
+      marginTop: 37,
       flexDirection: "column",
       alignItems: 'flex-end',
-      fontSize: 28
+      fontSize: 28,
     }
-  }
+  },
+  headerLayoutPreset: 'left'
 }
 
 const counterStackNavigator = createStackNavigator({

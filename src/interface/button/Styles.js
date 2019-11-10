@@ -8,6 +8,7 @@ var styles = StyleSheet.create({
     borderRadius: 4,
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'center',
     marginVertical: 10,
     width: 140
   },
@@ -16,7 +17,7 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     color: '#14437B',
-    width: 100
+    width: 90,
   }
 })
 

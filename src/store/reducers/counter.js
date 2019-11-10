@@ -18,24 +18,21 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         counters: [
+          ...state.counters,
           {
             count: 0
-          },
-          ...state.counters,
+          }
         ],
         selected: state.selected === null ? 0 : state.selected
       }
     case REMOVE_COUNTER:
+      let counter_copy = [...state.counters]
+      counter_copy.splice(action.payload.position, 1)
+
       return {
         ...state,
-        counters: [state.counters.slice(0, action.payload.position), ...state.counters.slice(action.payload.position + 1)],
-        selected:
-          state.selected === action.payload.position ?
-            (
-              state.counters.length === 1 ? null : 0
-            )
-            :
-            state.selected
+        counters: counter_copy,
+        selected: counter_copy.length === 0 ? null : 0
       }
     case INC_COUNTER:
       return {
