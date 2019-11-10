@@ -9,6 +9,11 @@ import { connect } from 'react-redux'
 
 class ItemCounter extends Component {
 
+  leftPad = (value, totalWidth, paddingChar) => {
+    var length = totalWidth - value.toString().length + 1;
+    return Array(length).join(paddingChar || '0') + value;
+  }
+
   render() {
     return (
       <TouchableHighlight
@@ -17,7 +22,7 @@ class ItemCounter extends Component {
       >
         <View style={[styles.container, this.props.position === this.props.selected_counter ? styles.container_selected : {}]} >
           <Text style={styles.label}>Counter {this.props.position + 1}</Text>
-          <Text style={styles.value}>{this.props.count}</Text>
+          <Text style={styles.value}>{this.leftPad(this.props.count, 4)}</Text>
         </View>
       </TouchableHighlight>
     )
