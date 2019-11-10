@@ -40,7 +40,7 @@ class ModalAlert extends Component {
           </TouchableWithoutFeedback>
           <View style={styles.body}>
 
-            <Icon set="AntDesign" icone={icone} size={50} style={[{ color: cor }, styles.icone]} />
+            <Icon set="AntDesign" icon={icone} size={50} style={{...styles.icon, color: cor }} />
             <Text style={styles.message}>{this.props.msg}</Text>
             <View style={{
               flexDirection: 'row',

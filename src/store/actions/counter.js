@@ -4,34 +4,41 @@ import {
   REMOVE_COUNTER,
   INC_COUNTER,
   DEC_COUNTER,
-  RESET_COUNTER
+  RESET_COUNTER,
+  SELECT_COUNTER
 } from './actionTypes'
 
-const objPayload = (type, name) => {
+const objPayload = (type, position) => {
   return  {
     type: type,
     payload: {
-      name
+      position
     }
   }
 }
 
-export const includeCounter = (name) => {
-  return objPayload(INCLUDE_COUNTER, name)
+export const includeCounter = () => {
+  return  {
+    type: INCLUDE_COUNTER
+  }
 }
 
-export const removeCounter = (name) => {
-  return objPayload(REMOVE_COUNTER, name)
+export const removeCounter = (position) => {
+  return objPayload(REMOVE_COUNTER, position)
 }
 
-export const INC_COUNTER = (name) => {
-  return objPayload(INC_COUNTER, name)
+export const incCounter = (position) => {
+  return objPayload(INC_COUNTER, position)
 }
 
-export const DEC_COUNTER = (name) => {
-  return objPayload(DEC_COUNTER, name)
+export const decCounter = (position) => {
+  return objPayload(DEC_COUNTER, position)
 }
 
-export const RESET_COUNTER = (name) => {
-  return objPayload(RESET_COUNTER, name)
+export const resetCounter = (position) => {
+  return objPayload(RESET_COUNTER, position)
+}
+
+export const selectCounter = (position) => {
+  return objPayload(SELECT_COUNTER, position)
 }
